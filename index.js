@@ -164,7 +164,7 @@ try {
 
 
 const client = new Wit({accessToken: WIT_TOKEN,actions});
-//interactive(client);
+client.interactive();
 
 function getName(context,entities){
 	console.log("YAY THIS WAS CALLED");
