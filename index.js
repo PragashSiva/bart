@@ -75,6 +75,26 @@ function sendGenericMessage(sender) {
     })
 }
 
+const sessions = {};
+
+const findOrCreateSession = (fbid) => {
+  let sessionId;
+  // Let's see if we already have a session for the user fbid
+  Object.keys(sessions).forEach(k => {
+    if (sessions[k].fbid === fbid) {
+      // Yep, got it!
+      sessionId = k;
+    }
+  });
+  if (!sessionId) {
+    // No session found for user fbid, let's create a new one
+    sessionId = new Date().toISOString();
+    sessions[sessionId] = {fbid: fbid, context: {}};
+  }
+  return sessionId;
+};
+
+
  app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
@@ -87,9 +107,11 @@ function sendGenericMessage(sender) {
             continue
         }
 
+        const recipientId = sessions[sessionId].fbid 
         client.converse(text.substring(0,200), {})
 		.then((data) => {
-		  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data))
+
+		  console.log('Yay, got Wit.ai response: ' +   recipientId + JSON.stringify(data))
 		  let reply = JSON.stringify(data.msg)
 		  sendTextMessage(sender, reply.substring(0,200).replace(/['"]+/g, ''))
 		})
