@@ -62,17 +62,14 @@ app.get('/', function(req, res) {
 });
 
 // Webhook verify setup using FB_VERIFY_TOKEN
-app.get('/webhook', (req, res) => {
-  if (!Config.FB_VERIFY_TOKEN) {
-    throw new Error('missing FB_VERIFY_TOKEN');
-  }
-  if (req.query['hub.mode'] === 'subscribe' &&
-    req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
-    res.send(req.query['hub.challenge']);
-  } else {
-    res.sendStatus(400);
-  }
-});
+// for Facebook verification
+app.get('/webhook/', function (req, res) {
+    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
+        res.send(req.query['hub.challenge'])
+    }
+    res.send('Error, wrong token')
+})
+
 
 // The main message handler
 app.post('/webhook', (req, res) => {
