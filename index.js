@@ -109,7 +109,7 @@ const findOrCreateSession = (fbid) => {
         }
 
         const recipientId = sessions[sessionId].fbid 
-        client.converse(text.substring(0,200), {})
+        client.converse(recipientId,text.substring(0,200), {})
 		.then((data) => {
 
 		  console.log('Yay, got Wit.ai response: ' +   recipientId + JSON.stringify(data))
