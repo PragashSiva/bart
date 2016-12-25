@@ -91,10 +91,11 @@ function sendGenericMessage(sender) {
 		.then((data) => {
 		  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data))
 		  let reply = JSON.stringify(data)
+		  sendTextMessage(sender, "New text received, echo: " + reply.substring(0, 200))
 		})
 		.catch(console.error);
 
-        sendTextMessage(sender, "New text received, echo: " + reply.substring(0, 200))
+        
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
