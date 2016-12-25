@@ -22,6 +22,9 @@ const actions = {
   getName(sessionId, context, cb){
     // Bot testing mode, run cb() and return
     console.log("Running the GetName Action!")
+
+    // callback function
+    cb() 
   },
   say(sessionId, context, message, cb) {
     console.log(message);
