@@ -96,7 +96,14 @@ function sendGenericMessage(sender) {
     }
     res.sendStatus(200)
   })
+const WIT_TOKEN = process.env.WIT_TOKEN;
 
+const client = new Wit({accessToken: WIT_TOKEN});
+client.message('what is the weather in London?', {})
+.then((data) => {
+  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
+})
+.catch(console.error);
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
