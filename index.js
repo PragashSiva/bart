@@ -89,11 +89,12 @@ function sendGenericMessage(sender) {
 
         client.message(text.substring(0,200), {})
 		.then((data) => {
-		  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
+		  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data))
+		  let reply = JSON.stringify(data)
 		})
 		.catch(console.error);
 
-        sendTextMessage(sender, "New text received, echo: " + text.substring(0, 200))
+        sendTextMessage(sender, "New text received, echo: " + reply.substring(0, 200))
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
