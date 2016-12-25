@@ -151,15 +151,16 @@ const actions = {
 const WIT_TOKEN = process.env.WIT_TOKEN;
 
 let Wit = null;
-let log = null;
+let interactive = null;
 try {
   // if running from repo
   Wit = require('../').Wit;
-  log = require('../').log;
+  interactive = require('../').interactive;
 } catch (e) {
   Wit = require('node-wit').Wit;
-  log = require('node-wit').log;
+  interactive = require('node-wit').interactive;
 }
+
 
 
 const client = new Wit({accessToken: WIT_TOKEN,actions});
