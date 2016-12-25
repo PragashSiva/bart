@@ -86,7 +86,14 @@ function sendGenericMessage(sender) {
             sendGenericMessage(sender)
             continue
         }
-        sendGenericMessage(sender, "New text received, echo: " + text.substring(0, 200))
+
+        client.message(text.substring(0,200), {})
+		.then((data) => {
+		  let reply = JSON.stringify(data));
+		})
+		.catch(console.error);
+
+        sendTextMessage(sender, "New text received, echo: " + reply.substring(0, 200))
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
@@ -110,11 +117,7 @@ try {
 }
 
 const client = new Wit({accessToken: WIT_TOKEN});
-client.message('what is the weather in London?', {})
-.then((data) => {
-  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
-})
-.catch(console.error);
+
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
