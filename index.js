@@ -98,6 +98,17 @@ function sendGenericMessage(sender) {
   })
 const WIT_TOKEN = process.env.WIT_TOKEN;
 
+let Wit = null;
+let log = null;
+try {
+  // if running from repo
+  Wit = require('../').Wit;
+  log = require('../').log;
+} catch (e) {
+  Wit = require('node-wit').Wit;
+  log = require('node-wit').log;
+}
+
 const client = new Wit({accessToken: WIT_TOKEN});
 client.message('what is the weather in London?', {})
 .then((data) => {
