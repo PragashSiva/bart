@@ -91,11 +91,7 @@ function sendGenericMessage(sender) {
 		.then((data) => {
 		  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data))
 		  let reply = JSON.stringify(data.msg)
-
-		  while(reply.type !== 'stop'){
-		  	sendTextMessage(sender, reply.substring(0,200).replace(/['"]+/g, ''))
-		  }
-		  
+		  sendTextMessage(sender, reply.substring(0,200).replace(/['"]+/g, ''))
 		})
 		.catch(console.error);
 
