@@ -143,6 +143,9 @@ try {
 
 const client = new Wit({accessToken: WIT_TOKEN});
 
+function getName(context,entities){
+	console.log("YAY THIS WAS CALLED");
+}
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
