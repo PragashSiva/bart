@@ -23,7 +23,7 @@ const actions = {
     console.log(message);
     // Bot testing mode, run cb() and return
     console.log("Running the GetName Action!")
-  }
+  },
   say(sessionId, context, entities, message, cb) {
     console.log(message);
 
