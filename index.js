@@ -89,7 +89,7 @@ function sendGenericMessage(sender) {
 
         client.message(text.substring(0,200), {})
 		.then((data) => {
-		  console.log(JSON.stringify(data));
+		  console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
 		})
 		.catch(console.error);
 
