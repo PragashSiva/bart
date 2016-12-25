@@ -163,8 +163,14 @@ try {
 
 
 
-const client = new Wit({accessToken: WIT_TOKEN,actions});
-client.interactive();
+const getWit = () => {
+  return new Wit(WIT_TOKEN, actions);
+};
+
+exports.getWit = getWit;
+
+  const client = getWit();
+  client.interactive();
 
 function getName(context,entities){
 	console.log("YAY THIS WAS CALLED");
