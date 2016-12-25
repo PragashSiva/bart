@@ -89,7 +89,7 @@ function sendGenericMessage(sender) {
 
         client.message(text.substring(0,200), {})
 		.then((data) => {
-		  let reply = JSON.stringify(data));
+		  let reply = JSON.stringify(data);
 		})
 		.catch(console.error);
 
