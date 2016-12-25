@@ -19,8 +19,19 @@ const firstEntityValue = (entities, entity) => {
 
 // Bot actions
 const actions = {
+  getName(sessionId, context, entities, message, cb){
+    console.log(message);
+    // Bot testing mode, run cb() and return
+    if (require.main === module) {
+      cb();
+      return;
+    }
+
+    console.log("Running the GetName Action!")
+  }
   say(sessionId, context, message, cb) {
     console.log(message);
+
 
     // Bot testing mode, run cb() and return
     if (require.main === module) {
