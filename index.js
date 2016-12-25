@@ -95,6 +95,26 @@ const findOrCreateSession = (fbid) => {
 };
 
 
+const actions = {
+  send(request, response) {
+    const {sessionId, context, entities} = request;
+    const {text, quickreplies} = response;
+    return new Promise(function(resolve, reject) {
+      console.log('sending...', JSON.stringify(response));
+      return resolve();
+    });
+  },
+  getForecast({context, entities}) {
+    return new Promise(function(resolve, reject) {
+      // Here should go the api call, e.g.:
+      // context.forecast = apiCall(context.loc)
+      context.forecast = 'sunny';
+      return resolve(context);
+    });
+  },
+};
+
+
  app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
@@ -141,7 +161,9 @@ try {
   log = require('node-wit').log;
 }
 
-const client = new Wit({accessToken: WIT_TOKEN});
+
+const client = new Wit({accessToken: WIT_TOKEN,actions});
+interactive(client);
 
 function getName(context,entities){
 	console.log("YAY THIS WAS CALLED");
