@@ -64,8 +64,9 @@ const actions = {
       console.log("Resolving context after STORE.");
       //call the API here
       return resolve(context);
-
     });
+
+    cb();
   },
   say(sessionId, context, message, cb) {
     console.log(message);
