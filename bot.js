@@ -39,7 +39,7 @@ const actions = {
         .on('row', (row) => {
           console.log(JSON.stringify(row));
       });
-    }
+    });
 
     // callback function
     cb() 
