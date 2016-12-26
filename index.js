@@ -8,7 +8,7 @@
 //
 const bodyParser = require('body-parser');
 const express = require('express');
-ex
+
 // get Bot, const, and Facebook API
 const bot = require('./bot.js');
 const Config = require('./const.js');
