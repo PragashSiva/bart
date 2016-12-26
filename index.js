@@ -40,7 +40,7 @@ client
 
 // Insert data
 client
-  .query('INSERT INTO items(text, complete) values($1, $2)',["data.text", true]);
+  .query('INSERT INTO items(text, complete) values($1, $2)',["data.text", true])
   .on('end', () => { client.end(); });
 
 });
