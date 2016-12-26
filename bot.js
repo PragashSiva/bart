@@ -51,7 +51,7 @@ const actions = {
       client
         .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
       
-      });
+    });
 
 
     // Returning, no callback necessary 
@@ -61,6 +61,7 @@ const actions = {
         context.data= data;
       }
       
+      console.log("Resolving context after STORE.");
       //call the API here
       return resolve(context);
 
