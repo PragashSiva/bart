@@ -5,6 +5,7 @@
 const Wit = require('node-wit').Wit;
 const FB = require('./facebook.js');
 const Config = require('./const.js');
+var pg = require('pg');
 
 const firstEntityValue = (entities, entity) => {
   const val = entities && entities[entity] &&
@@ -20,8 +21,25 @@ const firstEntityValue = (entities, entity) => {
 // Bot actions
 const actions = {
   getName(sessionId, context, cb){
+
     // Bot testing mode, run cb() and return
     console.log("Running the GetName Action!")
+
+    pg.defaults.ssl = true;
+    pg.connect(process.env.DATABASE_URL, function(err, client) {
+      if (err) throw err;
+        console.log('Connected to postgres! Getting schemas...');
+
+      // Insert data
+      client
+        .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
+      
+      // Read data
+      client.query('SELECT * FROM items ORDER BY id ASC')
+        .on('row', (row) => {
+          console.log(JSON.stringify(row));
+      });
+    }
 
     // callback function
     cb() 
