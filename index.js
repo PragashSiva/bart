@@ -8,7 +8,7 @@
 //
 const bodyParser = require('body-parser');
 const express = require('express');
-
+ex
 // get Bot, const, and Facebook API
 const bot = require('./bot.js');
 const Config = require('./const.js');
@@ -26,6 +26,20 @@ const PORT = process.env.PORT || 8445;
 // Each session has an entry:
 // sessionId -> {fbid: facebookUserId, context: sessionState}
 const sessions = {};
+
+var pg = require('pg');
+
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT table_schema,table_name FROM information_schema.tables;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
 
 const findOrCreateSession = (fbid) => {
   let sessionId;
