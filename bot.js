@@ -65,7 +65,6 @@ const actions = {
       return resolve(context);
     });
 
-    cb();
   },
   say(sessionId, context, message, cb) {
     console.log(message);
