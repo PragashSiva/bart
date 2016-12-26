@@ -39,7 +39,7 @@ const query = client.query(
 query.on('end', () => { client.end(); });
 
 client.query('INSERT INTO items(text, complete) values($1, $2)',
-["data.text", True]);
+["data.text", true]);
 
 });
 
