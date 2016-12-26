@@ -21,7 +21,7 @@ const firstEntityValue = (entities, entity) => {
 // Bot actions
 const actions = {
 
-  retrieve(sessionId, context, cb){
+  retrieve(sessionId, context, entities, cb){
     // Bot testing mode, run cb() and return
     console.log("Attempting to retrieve from datastore...")
 
@@ -38,7 +38,7 @@ const actions = {
     });
   },
 
-  store(sessionId, context, cb){
+  store(sessionId, context, entities, cb){
     // Bot testing mode, run cb() and return
     console.log("Attempting to store in datastore...")
 
