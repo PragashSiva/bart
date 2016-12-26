@@ -32,7 +32,7 @@ const actions = {
 
       // Insert data
       client
-        .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
+        .query('INSERT INTO items(text, complete) values($1, $2)',[context, true]);
       
       // Read data
       client.query('SELECT * FROM items ORDER BY id ASC')
