@@ -60,9 +60,10 @@ const actions = {
         console.log("STORING: " + data);
       }
       
-      console.log("Resolving context after STORE.");
+      console.log("Resolving context after storing " + data);
       //call the API here
       return resolve(context);
+      cb();
     });
 
   },
