@@ -36,7 +36,7 @@ const actions = {
           console.log(JSON.stringify(row)); 
       cb();
     });
-  }
+  },
 
   store(sessionId, context, cb){
     // Bot testing mode, run cb() and return
