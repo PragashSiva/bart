@@ -38,7 +38,7 @@ const actions = {
     });
   },
 
-  store(sessionId, context, entities, cb){
+  store(context, entities){
     // Bot testing mode, run cb() and return
     console.log("Attempting to store in datastore...")
 
