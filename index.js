@@ -40,9 +40,13 @@ client
 
 // Insert data
 client
-  .query('INSERT INTO items(text, complete) values($1, $2)',["data.text", true])
-  .on('end', () => { client.end(); });
+  .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
 
+
+client.query('SELECT * FROM items ORDER BY id ASC')
+  .on('row', (row) => {
+    console.log(JSON.stringify(row));
+  });
 });
 
 const findOrCreateSession = (fbid) => {
