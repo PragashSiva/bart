@@ -57,7 +57,7 @@ const actions = {
       const data = firstEntityValue(entities, 'data');
       if (data) {
         context.data= data;
-        console.log("Updated data");
+        console.log("STORING: " + data);
       }
       
       console.log("Resolving context after STORE.");
