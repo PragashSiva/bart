@@ -39,8 +39,8 @@ client
   .query('CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
 
 // Insert data
-client
-  .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
+//client
+ // .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
 
 
 client.query('SELECT * FROM items ORDER BY id ASC')
