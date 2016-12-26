@@ -20,29 +20,52 @@ const firstEntityValue = (entities, entity) => {
 
 // Bot actions
 const actions = {
-  getName(sessionId, context, entities, cb){
 
+  retrieve(sessionId, context, cb){
     // Bot testing mode, run cb() and return
-    console.log("Running the GetName Action!")
+    console.log("Attempting to retrieve from datastore...")
 
     pg.defaults.ssl = true;
     pg.connect(process.env.DATABASE_URL, function(err, client) {
       if (err) throw err;
-        console.log('Connected to postgres! Getting schemas...');
+        console.log('Connected to postgres!');
 
-      // Insert data
-      client
-        .query('INSERT INTO items(text, complete) values($1, $2)',[entities, true]);
-      
       // Read data
       client.query('SELECT * FROM items ORDER BY id ASC')
         .on('row', (row) => {
-          console.log(JSON.stringify(row));
-      });
+          console.log(JSON.stringify(row)); 
+      cb();
     });
+  }
 
-    // callback function
-    cb() 
+  store(sessionId, context, cb){
+    // Bot testing mode, run cb() and return
+    console.log("Attempting to store in datastore...")
+
+    pg.defaults.ssl = true;
+    pg.connect(process.env.DATABASE_URL, function(err, client) {
+      if (err) throw err;
+        console.log('Connected to postgres!');
+
+      // Insert data
+      client
+        .query('INSERT INTO items(text, complete) values($1, $2)',["testData", true]);
+      
+      });
+
+    }
+
+    // Returning, no callback necessary 
+    return new Promise(function(resolve, reject) {
+      const data = firstEntityValue(entities, 'data');
+      if (data) {
+        context.data= data;
+      }
+      
+      //call the API here
+      return resolve(context);
+
+    });
   },
   say(sessionId, context, message, cb) {
     console.log(message);

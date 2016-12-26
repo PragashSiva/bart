@@ -32,7 +32,7 @@ var pg = require('pg');
 pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
+  console.log('Connected to postgres!');
 });
 
 const findOrCreateSession = (fbid) => {
