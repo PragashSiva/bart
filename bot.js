@@ -34,7 +34,7 @@ const actions = {
       client.query('SELECT * FROM items ORDER BY id ASC')
         .on('row', (row) => {
           console.log(JSON.stringify(row)); 
-      cb();
+      });
     });
   },
 
@@ -53,7 +53,6 @@ const actions = {
       
       });
 
-    }
 
     // Returning, no callback necessary 
     return new Promise(function(resolve, reject) {
