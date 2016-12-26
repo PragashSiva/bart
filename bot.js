@@ -20,7 +20,7 @@ const firstEntityValue = (entities, entity) => {
 
 // Bot actions
 const actions = {
-  getName(sessionId, context, cb){
+  getName(sessionId, context, entities, cb){
 
     // Bot testing mode, run cb() and return
     console.log("Running the GetName Action!")
@@ -32,7 +32,7 @@ const actions = {
 
       // Insert data
       client
-        .query('INSERT INTO items(text, complete) values($1, $2)',[context, true]);
+        .query('INSERT INTO items(text, complete) values($1, $2)',[entities, true]);
       
       // Read data
       client.query('SELECT * FROM items ORDER BY id ASC')
