@@ -123,6 +123,10 @@ const actions = {
     context.forecast = 'sunny';
     cb(context);
   },
+  ['fetch-duties'](sessionId, context, cb) {
+    context.duties = 'Adrian: Big washroom \n Pragash: Kitchen \n Tony: Garbage \n Franz: Small washroom \n Solomon: Common Area';
+    cb(context);
+  },
 };
 
 
